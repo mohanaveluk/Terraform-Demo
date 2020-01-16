@@ -26,7 +26,7 @@ resource "azurerm_app_service" "test" {
   }
 
   app_settings = {
-    "SOME_KEY" = "some-value"
+    "SOME_KEY" = "some-value1"
   }
 
   connection_string {
@@ -37,16 +37,16 @@ resource "azurerm_app_service" "test" {
 }
 
 resource "azurerm_sql_server" "test" {
-  name                         = "terraform-sqlserver1"
+  name                         = "mk-terraform-sqlserver1"
   resource_group_name          = "${azurerm_resource_group.test.name}"
   location                     = "${azurerm_resource_group.test.location}"
   version                      = "12.0"
-  administrator_login          = "houssem"
+  administrator_login          = "mohanaveluk"
   administrator_login_password = "4-v3ry-53cr37-p455w0rd"
 }
 
 resource "azurerm_sql_database" "test" {
-  name                = "terraform-sqldatabase"
+  name                = "mk-terraform-sqldatabase"
   resource_group_name = "${azurerm_resource_group.test.name}"
   location            = "${azurerm_resource_group.test.location}"
   server_name         = "${azurerm_sql_server.test.name}"
