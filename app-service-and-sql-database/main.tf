@@ -1,10 +1,10 @@
 resource "azurerm_resource_group" "test" {
-  name     = "example-resources"
+  name     = "mk-example-resources"
   location = "West Europe"
 }
 
 resource "azurerm_app_service_plan" "test" {
-  name                = "example-appserviceplan"
+  name                = "mk-example-appserviceplan"
   location            = "${azurerm_resource_group.test.location}"
   resource_group_name = "${azurerm_resource_group.test.name}"
 
@@ -15,7 +15,7 @@ resource "azurerm_app_service_plan" "test" {
 }
 
 resource "azurerm_app_service" "test" {
-  name                = "terraform-app-service"
+  name                = "mk-terraform-app-service"
   location            = "${azurerm_resource_group.test.location}"
   resource_group_name = "${azurerm_resource_group.test.name}"
   app_service_plan_id = "${azurerm_app_service_plan.test.id}"
@@ -37,16 +37,16 @@ resource "azurerm_app_service" "test" {
 }
 
 resource "azurerm_sql_server" "test" {
-  name                         = "terraform-sqlserver"
+  name                         = "mk-terraform-sqlserver"
   resource_group_name          = "${azurerm_resource_group.test.name}"
   location                     = "${azurerm_resource_group.test.location}"
   version                      = "12.0"
-  administrator_login          = "houssem"
+  administrator_login          = "mohanaveluk"
   administrator_login_password = "4-v3ry-53cr37-p455w0rd"
 }
 
 resource "azurerm_sql_database" "test" {
-  name                = "terraform-sqldatabase"
+  name                = "mk-terraform-sqldatabase"
   resource_group_name = "${azurerm_resource_group.test.name}"
   location            = "${azurerm_resource_group.test.location}"
   server_name         = "${azurerm_sql_server.test.name}"
